@@ -1,5 +1,5 @@
 // src/config/SecurityConfig.java
-package com.pseintwebstudio.backend.config;
+package com.pseudocodewebstudio.backend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,13 +14,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    // 1. Definimos un "Bean" para el encriptador de contraseñas
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // 2. Definimos la cadena de filtros de seguridad
+
+    // 2. Definimos la cadena de filtros de
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http

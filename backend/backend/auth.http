@@ -1,0 +1,29 @@
+### Registrar un nuevo usuario exitosamente
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "primerusuario",
+  "email": "primero@example.com",
+  "password": "unacontraseñasegura"
+}
+
+### Intentar registrar un usuario con un nombre duplicado
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "primerusuario",
+  "email": "segundo@example.com",
+  "password": "otracontraseña"
+}
+
+### Intentar registrar un usuario con datos inválidos (contraseña corta)
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "usuariodos",
+  "email": "dos@example.com",
+  "password": "123"
+}
