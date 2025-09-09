@@ -1,0 +1,25 @@
+/* src/pages/HomePage.css */
+.homepage-container {
+  width: 100%;
+  text-align: center;
+}
+
+.homepage-title {
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.homepage-subtitle {
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+.exercise-grid {
+  display: flex;
+  flex-wrap: wrap; /* Permite que las tarjetas pasen a la siguiente línea */
+  gap: 24px; /* Espacio entre las tarjetas */
+  justify-content: center; /* ¡La magia para centrar las tarjetas! */
+  width: 100%;
+}

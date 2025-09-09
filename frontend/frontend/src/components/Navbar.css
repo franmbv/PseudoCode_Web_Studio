@@ -1,0 +1,34 @@
+/* src/components/Navbar.css (Versión con Paleta de Colores) */
+.navbar {
+  background: var(--bg-secondary); /* Usamos el blanco puro para contraste */
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  border-bottom: 1px solid var(--border-color); /* Borde sutil */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04); /* Sombra muy ligera */
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  width: 100%;
+  max-width: 1500px;
+  padding: 0 50px;
+}
+
+.navbar-logo {
+  color: var(--text-primary); /* Texto principal oscuro */
+  justify-self: start;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}

@@ -1,0 +1,24 @@
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.spinner {
+  border: 8px solid rgba(255, 255, 255, 0.2); /* Gris claro semi-transparente */
+  border-top: 8px solid #61dafb; /* Color azul de React */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

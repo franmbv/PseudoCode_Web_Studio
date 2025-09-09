@@ -1,12 +1,10 @@
 package com.pseudocodewebstudio.backend.controller;
 
+import com.pseudocodewebstudio.backend.dto.AnswerRequest;
 import com.pseudocodewebstudio.backend.model.Exercise;
 import com.pseudocodewebstudio.backend.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +26,11 @@ public class ExerciseController {
     @GetMapping("/{id}")
     public Exercise getExerciseById(@PathVariable Long id) {
         return exerciseService.findExerciseById(id);
+    }
+
+    @PostMapping("/submit-answer")
+    public boolean submitAnswer(@RequestBody AnswerRequest answerRequest) {
+        return exerciseService.checkAnswer(answerRequest.getOptionId());
     }
 
 }
