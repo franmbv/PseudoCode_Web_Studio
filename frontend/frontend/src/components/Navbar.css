@@ -23,12 +23,70 @@
 }
 
 .navbar-logo {
-  color: var(--text-primary); /* Texto principal oscuro */
+  color: var(--text-primary);
   justify-self: start;
   cursor: pointer;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 1.5rem; 
   display: flex;
   align-items: center;
   font-weight: bold;
+}
+
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+}
+
+.nav-item {
+  height: 80px;
+  display: flex; 
+  align-items: center;
+}
+
+.nav-links {
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+}
+
+.nav-links:hover {
+  border-bottom: 4px solid var(--accent-primary);
+  transition: all 0.2s ease-out;
+}
+
+.nav-welcome {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  padding: 0 1rem;
+}
+
+.nav-links-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  padding: 0 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+}
+
+.nav-links-btn:hover {
+  color: var(--accent-primary);
+}
+
+
+.navbar-logo-img {
+  height: 60px; 
+  width: auto; 
+  margin-right: 12px; 
 }

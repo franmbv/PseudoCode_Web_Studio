@@ -6,7 +6,7 @@
 
 .homepage-title {
   font-weight: 700;
-  margin-top: 20px;
+  margin-top: 70px;
   margin-bottom: 16px;
   color: var(--text-primary);
 }
@@ -22,4 +22,34 @@
   gap: 24px; /* Espacio entre las tarjetas */
   justify-content: center; /* ¡La magia para centrar las tarjetas! */
   width: 100%;
+}
+
+.progress-trophy {
+  /* Posicionamiento */
+  position: absolute; /* Lo sacamos del flujo normal del documento */
+  top: 100px; /* Un poco por debajo de la Navbar */
+  right: 40px; /* En la esquina superior derecha */
+
+  /* Estilos del contenedor */
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 50px; /* Forma de píldora */
+  padding: 8px 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+  /* Alineación del contenido (icono y texto) */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.trophy-icon {
+  color: #ffc107; /* Color dorado */
+  font-size: 1.5rem;
+}
+
+.trophy-text {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1rem;
 }

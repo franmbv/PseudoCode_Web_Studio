@@ -1,35 +1,35 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import type { Exercise, Option } from '../types/exercise'; // Importamos también el tipo Option
+import type { Exercise, Option } from '../types/exercise';
 import { useExercises } from '../context/ExerciseContext';
 import Spinner from '../components/Spinner';
 import { FaArrowLeft } from 'react-icons/fa';
 import './ExerciseDetailPage.css';
+import { useAuth } from '../context/AuthContext';
 
 function ExerciseDetailPage() {
   const { id } = useParams<{ id: string }>();
   const { exercises } = useExercises();
+  
+  // Obtenemos las herramientas del AuthContext
+  const { token, updateUserProgress } = useAuth();
 
-  // Estados para gestionar la lógica de la página
+  // Estados locales de la página
   const [exercise, setExercise] = useState<Exercise | null>(null);
   const [error, setError] = useState<string | null>(null);
-
-  // Estados para la interacción del usuario
   const [selectedOptionId, setSelectedOptionId] = useState<number | null>(null);
   const [checkResult, setCheckResult] = useState<'correct' | 'incorrect' | null>(null);
 
-  // Lógica para encontrar el siguiente ejercicio
+  // Lógica para encontrar el siguiente ejercicio (sin cambios)
   const currentExerciseIndex = exercises.findIndex(ex => ex.id === Number(id));
   const nextExerciseId = currentExerciseIndex !== -1 && currentExerciseIndex < exercises.length - 1
     ? exercises[currentExerciseIndex + 1].id
     : null;
 
-  // Efecto para buscar el ejercicio y resetear el estado cuando cambia el ID de la URL
+  // Efecto para buscar el ejercicio y resetear el estado (sin cambios)
   useEffect(() => {
     const fetchExerciseAndResetState = async () => {
       if (!id) return;
-
-      // Reseteamos el estado para la nueva pregunta
       setExercise(null);
       setError(null);
       setSelectedOptionId(null);
@@ -48,15 +48,17 @@ function ExerciseDetailPage() {
     fetchExerciseAndResetState();
   }, [id]);
 
-  // Manejador para cuando el usuario selecciona una opción
+  // Manejador para la selección de opción (sin cambios)
   const handleOptionSelect = (optionId: number) => {
-    if (checkResult) return; // No permitir cambiar si ya se comprobó
+    if (checkResult) return;
     setSelectedOptionId(optionId);
   };
 
-  // Manejador para cuando el usuario hace clic en "Comprobar Respuesta"
+  // --- MANEJADOR DE COMPROBACIÓN ACTUALIZADO ---
   const handleCheckAnswer = async () => {
     if (selectedOptionId === null) return;
+
+    console.log("Paso 1: Iniciando handleCheckAnswer.");
 
     try {
       const response = await fetch('http://localhost:8080/api/exercises/submit-answer', {
@@ -65,42 +67,67 @@ function ExerciseDetailPage() {
         body: JSON.stringify({ optionId: selectedOptionId }),
       });
 
-      if (!response.ok) throw new Error('Error al enviar la respuesta.');
-
       const isCorrect: boolean = await response.json();
       setCheckResult(isCorrect ? 'correct' : 'incorrect');
+      console.log("Paso 2: Respuesta de /submit-answer recibida. Es correcta:", isCorrect);
+
+      if (isCorrect) {
+        console.log("Paso 3: La respuesta es correcta. Intentando guardar progreso...");
+        try {
+          const progressResponse = await fetch(`http://localhost:8080/api/progress/complete/${id}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+          });
+          
+          console.log("Paso 4: Respuesta de /progress/complete recibida. Status:", progressResponse.status);
+
+          if (!progressResponse.ok) {
+            throw new Error(`El servidor respondió con status: ${progressResponse.status}`);
+          }
+          
+          console.log("Paso 5: Progreso guardado en backend. Llamando a updateUserProgress...");
+          
+          // --- ¡LA LÍNEA CLAVE QUE FALTABA! ---
+          updateUserProgress(Number(id));
+          
+          console.log("Paso 6: updateUserProgress fue llamado.");
+
+        } catch (err) {
+          console.error("FALLO en el bloque de guardado de progreso:", err);
+        }
+      }
     } catch (err) {
+      console.error("FALLO en el bloque de comprobación de respuesta:", err);
       if (err instanceof Error) setError(err.message);
       else setError('Ocurrió un error desconocido.');
     }
   };
 
-  // Función para determinar las clases CSS de cada botón de opción
+  // Función para determinar las clases CSS (sin cambios)
   const getOptionClassName = (option: Option) => {
     const classNames = ['option-button'];
-
-    // Si la opción está seleccionada (antes de comprobar)
     if (selectedOptionId === option.id && !checkResult) {
       classNames.push('selected');
     }
-
-    // Después de comprobar, coloreamos según el resultado
     if (checkResult) {
       if (option.isCorrect) {
-        classNames.push('correct'); // La correcta siempre es verde
+        classNames.push('correct');
       }
       if (selectedOptionId === option.id && checkResult === 'incorrect') {
-        classNames.push('incorrect'); // La que seleccionó mal el usuario es roja
+        classNames.push('incorrect');
       }
     }
     return classNames.join(' ');
   };
 
-  // Renderizado condicional para estados de carga y error
+  // Renderizado condicional (sin cambios)
   if (error) return <div className="error-message">{error}</div>;
   if (!exercise) return <Spinner />;
 
-  // Renderizado principal del componente
+  // JSX principal (sin cambios)
   return (
     <div className="detail-page-container">
       <Link to="/" className="back-link">
@@ -125,16 +152,14 @@ function ExerciseDetailPage() {
               key={option.id}
               className={getOptionClassName(option)}
               onClick={() => handleOptionSelect(option.id)}
-              disabled={!!checkResult} // Se deshabilitan después de comprobar
+              disabled={!!checkResult}
             >
               {option.text}
             </button>
           ))}
         </div>
         
-        {/* Contenedor para los botones de acción */}
         <div className="action-container">
-          {/* Si aún no se ha comprobado, muestra el botón "Comprobar" */}
           {!checkResult ? (
             <button 
               className="check-button" 
@@ -144,7 +169,6 @@ function ExerciseDetailPage() {
               Comprobar Respuesta
             </button>
           ) : (
-            /* Si ya se comprobó, muestra el feedback y el botón "Siguiente" */
             <div className="feedback-container">
               <p className={checkResult === 'correct' ? 'feedback correct' : 'feedback incorrect'}>
                 {checkResult === 'correct' ? '¡Respuesta Correcta!' : 'Respuesta Incorrecta.'}

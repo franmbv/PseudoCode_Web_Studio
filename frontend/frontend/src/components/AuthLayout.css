@@ -1,0 +1,43 @@
+/* src/components/AuthLayout.css */
+.auth-layout-container {
+  display: flex;
+  width: 100vw; /* Ocupa todo el ancho de la ventana */
+  min-height: 100vh; /* Ocupa toda la altura de la ventana */
+}
+
+.auth-layout-left {
+  flex: 1; /* Ocupa el 50% del espacio disponible */
+  background: linear-gradient(to right, #007bff, #0056b3); /* Un gradiente azul atractivo */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.auth-layout-logo {
+  height: 120px; /* Logo más grande */
+  margin-bottom: 24px;
+}
+
+.auth-layout-left h1 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.auth-layout-left p {
+  font-size: 1.2rem;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+.auth-layout-right {
+  flex: 1; /* Ocupa el otro 50% del espacio */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-primary); /* El fondo gris claro que ya tenemos */
+}
+

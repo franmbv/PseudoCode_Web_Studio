@@ -1,29 +1,49 @@
-### Registrar un nuevo usuario exitosamente
+### =================================================
+###           PRUEBAS DE AUTENTICACIÓN
+### =================================================
+
+### 1. Registrar un usuario de prueba (debería dar 200 OK)
+# @name registerRequest
 POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
-  "username": "primerusuario",
-  "email": "primero@example.com",
-  "password": "unacontraseñasegura"
+  "username": "testjwt",
+  "email": "testjwt@example.com",
+  "password": "password123"
 }
 
-### Intentar registrar un usuario con un nombre duplicado
-POST http://localhost:8080/api/auth/register
+### -------------------------------------------------
+
+### 2. Iniciar sesión para obtener un token
+# @name loginRequest
+POST http://localhost:8080/api/auth/login
 Content-Type: application/json
 
 {
-  "username": "primerusuario",
-  "email": "segundo@example.com",
-  "password": "otracontraseña"
+  "username": "testjwt",
+  "password": "password123"
 }
 
-### Intentar registrar un usuario con datos inválidos (contraseña corta)
-POST http://localhost:8080/api/auth/register
+> {%
+    // Línea de depuración:
+    console.log("Token recibido en la respuesta:", response.body.token);
+
+    client.global.set("jwt_token", response.body.token);
+%}
+
+### -------------------------------------------------
+
+### 3. Intentar acceder a un recurso protegido SIN token (debería fallar con 403 Forbidden)
+# @name protectedRequestNoToken
+POST http://localhost:8080/api/progress/complete/1
 Content-Type: application/json
 
-{
-  "username": "usuariodos",
-  "email": "dos@example.com",
-  "password": "123"
-}
+
+### -------------------------------------------------
+
+### 4. Acceder a un recurso protegido CON el token JWT (debería funcionar con 200 OK)
+# @name protectedRequestWithToken
+POST http://localhost:8080/api/progress/complete/1
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}

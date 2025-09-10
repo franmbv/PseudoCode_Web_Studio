@@ -45,3 +45,13 @@
   font-weight: 600; /* Ligeramente más grueso */
   color: var(--text-primary);
 }
+
+.exercise-card.locked {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.exercise-card.locked .card-icon {
+  color: var(--text-secondary);
+}

@@ -27,12 +27,15 @@ public class User {
     @Column(unique = true)
     private String email;
 
+    private Long progress = 0L;
+
     public User(){}
 
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.progress = 0L;
     }
 
     public Long getId() {
@@ -65,5 +68,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getProgress() {
+        return progress;
+    }
+
+    public void setProgress(Long progress) {
+        this.progress = progress;
     }
 }
