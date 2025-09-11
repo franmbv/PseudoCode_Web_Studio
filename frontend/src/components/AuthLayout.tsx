@@ -1,6 +1,6 @@
 // src/components/AuthLayout.tsx
 import React from 'react';
-import logoImage from '../assets/logo1.svg'; // Asegúrate de que la ruta a tu logo sea correcta
+import logoImage from '../assets/logo.svg'; // Asegúrate de que la ruta a tu logo sea correcta
 import './AuthLayout.css';
 
 interface AuthLayoutProps {
