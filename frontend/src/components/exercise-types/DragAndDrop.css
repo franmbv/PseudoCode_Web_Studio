@@ -1,0 +1,45 @@
+.drag-and-drop-container {
+  width: 100%;
+}
+
+.droppable-area {
+  background-color: var(--bg-secondary);
+  border: 1px dashed var(--border-color);
+  border-radius: 12px;
+  padding: 16px;
+  min-height: 100px;
+  transition: background-color 0.2s ease;
+}
+
+.draggable-item {
+  user-select: none;
+  padding: 16px;
+  margin-bottom: 8px;
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  cursor: grab;
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.draggable-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Estilo cuando un elemento se está arrastrando */
+.draggable-item.dragging {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo para los elementos cuando la interacción está deshabilitada */
+.draggable-item.disabled {
+  cursor: not-allowed;
+  background-color: #f0f0f0;
+  color: var(--text-secondary);
+}
+
+.action-container-dnd {
+  margin-top: 24px;
+  text-align: right;
+}

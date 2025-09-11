@@ -47,3 +47,8 @@ Content-Type: application/json
 POST http://localhost:8080/api/progress/complete/1
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
+
+### -------------------------------------------------
+
+### Obtener el Ejercicio con ID 2 (no requiere autenticación)
+GET http://localhost:8080/api/exercises/3
