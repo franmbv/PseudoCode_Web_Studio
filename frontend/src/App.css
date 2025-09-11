@@ -61,3 +61,13 @@
   border: 1px solid var(--border-color);
   white-space: pre-wrap; /* Para que el texto se ajuste si es muy largo */
 }
+
+.site-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ocupa al menos toda la altura de la ventana */
+}
+
+.main-content {
+  flex-grow: 1; /* ¡La magia! Hace que el contenido principal ocupe todo el espacio sobrante */
+}

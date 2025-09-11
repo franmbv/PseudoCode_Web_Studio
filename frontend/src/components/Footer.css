@@ -1,0 +1,37 @@
+.footer {
+  background-color: var(--bg-secondary); /* Fondo blanco, igual que la Navbar */
+  padding: 2rem 0;
+  margin-top: 4rem;
+  border-top: 1px solid var(--border-color); /* Borde superior sutil */
+  color: var(--text-secondary); /* Texto secundario gris */
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between; /* Pone el copyright a la izq. y las redes a la der. */
+  align-items: center;
+  flex-wrap: wrap; /* Permite que se apilen en pantallas pequeñas */
+  gap: 20px; /* Espacio entre elementos si se apilan */
+}
+
+.footer-copyright {
+  font-size: 0.9rem;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 20px; /* Espacio entre los iconos */
+}
+
+.social-icon-link {
+  color: var(--text-secondary);
+  font-size: 1.5rem; /* Tamaño de los iconos */
+  transition: color 0.2s ease-in-out;
+}
+
+.social-icon-link:hover {
+  color: var(--accent-primary); /* Cambia a color de acento al pasar el ratón */
+}
