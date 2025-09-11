@@ -1,7 +1,9 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import type { ReactNode } from 'react';
 import type { User } from '../types/user';
+import { useExercises } from './ExerciseContext'; // <-- 1. Importar el hook de ejercicios
 
+// ... (interfaces AuthState, AuthContextType)
 interface AuthState {
   isAuthenticated: boolean;
   user: User | null;
@@ -10,21 +12,27 @@ interface AuthState {
 }
 
 interface AuthContextType extends AuthState {
-  login: (data: { token: string; username:string; email: string; id: number; progress: number; }) => void;
+  login: (data: { token: string; username: string; email: string; id: number; progress: number; }) => void;
   logout: () => void;
   updateUserProgress: (completedExerciseIndex: number) => void;
 }
 
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  // ... (código de useState, useEffect, login, logout)
   const [authState, setAuthState] = useState<AuthState>({
     isAuthenticated: false,
     user: null,
     token: null,
     isLoading: true,
   });
+  
+  // <-- 2. Obtener los ejercicios del contexto de ejercicios
+  const { exercises } = useExercises();
 
+  // ... (useEffect, login, logout sin cambios)
   useEffect(() => {
     try {
       const token = localStorage.getItem('token');
@@ -50,7 +58,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       progress: data.progress
     };
     
-    localStorage.setItem('token', JSON.stringify(data.token));
+    localStorage.setItem('token', data.token);
     localStorage.setItem('user', JSON.stringify(userToStore));
 
     setAuthState({
@@ -72,23 +80,28 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const updateUserProgress = (completedExerciseIndex: number) => {
-    const newProgress = completedExerciseIndex + 1;
+  const updateUserProgress = (completedExerciseId: number) => {
+    // 2. ¡EL CAMBIO CLAVE! El nuevo progreso ES el ID del ejercicio completado.
+    const newProgress = completedExerciseId;
 
     setAuthState(prevState => {
-      if (!prevState.user) {
+        if (!prevState.user) {
+            return prevState;
+        }
+        
+        const currentProgress = prevState.user.progress ?? 0;
+        
+        // La lógica de "cappedProgress" que añadiste es una excelente mejora de robustez, la conservamos.
+        const maxProgress = exercises.length;
+        const cappedProgress = Math.min(newProgress, maxProgress);
+
+        if (cappedProgress > currentProgress) {
+            const updatedUser: User = { ...prevState.user, progress: cappedProgress };
+            localStorage.setItem('user', JSON.stringify(updatedUser));
+            return { ...prevState, user: updatedUser };
+        }
+
         return prevState;
-      }
-
-      const currentProgress = prevState.user.progress ?? 0;
-
-      if (newProgress > currentProgress) {
-        const updatedUser: User = { ...prevState.user, progress: newProgress };
-        localStorage.setItem('user', JSON.stringify(updatedUser));
-        return { ...prevState, user: updatedUser };
-      }
-
-      return prevState;
     });
   };
 
@@ -97,6 +110,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
+// ... (hook useAuth)
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {

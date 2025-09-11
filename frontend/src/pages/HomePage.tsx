@@ -1,24 +1,20 @@
-import { useState } from 'react'; // <-- Importamos useState
+import { useState } from 'react';
 import { useExercises } from '../context/ExerciseContext';
 import Spinner from '../components/Spinner';
 import ExerciseCard from '../components/ExerciseCard'; 
 import './HomePage.css'; 
-// Importamos los iconos para los botones de paginación
 import { FaLock, FaTrophy, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 
 function HomePage() {
   const { exercises, isLoading, error } = useExercises();
   const { user, isAuthenticated } = useAuth();
-
-  // --- NUEVO: Estado para la paginación ---
   const [currentPage, setCurrentPage] = useState(1);
-  const exercisesPerPage = 8; // Máximo 8 ejercicios por página
+  const exercisesPerPage = 8;
 
   if (isLoading) return <Spinner />;
   if (error) return <div className="error-message">{error}</div>;
 
-  // --- NUEVO: Lógica de paginación ---
   const indexOfLastExercise = currentPage * exercisesPerPage;
   const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
   const currentExercises = exercises.slice(indexOfFirstExercise, indexOfLastExercise);
@@ -30,13 +26,15 @@ function HomePage() {
     }
   };
 
+  const userProgress = user?.progress ?? 0;
+
   return (
     <div className="homepage-container">
-      {isAuthenticated && user?.progress !== undefined && (
+      {isAuthenticated && (
         <div className="progress-trophy">
           <FaTrophy className="trophy-icon" />
           <span className="trophy-text">
-            {user.progress} / {exercises.length} Completados
+            {userProgress} / {exercises.length} Completados
           </span>
         </div>
       )}
@@ -45,15 +43,22 @@ function HomePage() {
       <p className="homepage-subtitle">Haz clic en una tarjeta para comenzar</p>
       
       <div className="exercise-grid">
-        {/* MODIFICADO: Mapeamos sobre los ejercicios de la página actual */}
         {currentExercises.map((exercise, index) => {
-          // El índice global es necesario para la lógica de bloqueo
           const globalIndex = indexOfFirstExercise + index;
 
-          const isLocked = isAuthenticated && user?.progress !== undefined 
-            ? globalIndex > user.progress 
-            : globalIndex > 0;
+          // --- LÓGICA DE BLOQUEO SIMPLIFICADA Y CORREGIDA ---
+          let isLocked: boolean;
 
+          if (isAuthenticated) {
+            // Si el usuario está autenticado, el bloqueo depende de su progreso.
+            // Un ejercicio está bloqueado si su índice es mayor que el número de ejercicios completados.
+            isLocked = globalIndex > userProgress;
+          } else {
+            // Si no está autenticado, solo el primer ejercicio (índice 0) está desbloqueado.
+            isLocked = globalIndex > 0;
+          }
+
+          // Ahora usamos la variable 'isLocked' en una sola condición.
           if (isLocked) {
             return (
               <div key={exercise.id} className="exercise-card locked">
@@ -63,11 +68,11 @@ function HomePage() {
             );
           }
 
+          // Si no está bloqueado, se muestra la tarjeta normal.
           return <ExerciseCard key={exercise.id} exercise={exercise} index={globalIndex} />;
         })}
       </div>
 
-      {/* --- NUEVO: Controles de Paginación --- */}
       {totalPages > 1 && (
         <div className="pagination-container">
           <button 
