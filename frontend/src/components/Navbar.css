@@ -84,8 +84,30 @@
 }
 
 
-.navbar-logo-img {
+.navbar-logo-desktop {
   height: 60px; 
   width: auto; 
   margin-right: 12px; 
+  display: block;
+}
+
+.navbar-logo-mobile {
+  height: 50px; 
+  width: auto; 
+  display: none; 
+}
+
+@media screen and (max-width: 768px) {
+  
+  .navbar-logo-desktop {
+    display: none;
+  }
+
+  .navbar-logo-mobile {
+    display: block;
+  }
+
+  .navbar-container {
+    padding: 0 20px;
+  }
 }

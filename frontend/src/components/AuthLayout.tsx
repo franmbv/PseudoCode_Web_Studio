@@ -1,6 +1,8 @@
 import React from 'react';
 import logoImage from '../assets/logo.svg'; 
 import './AuthLayout.css';
+import logoImage2 from '../assets/logo.png';
+
 
 interface AuthLayoutProps {
   children: React.ReactNode; 
@@ -16,6 +18,9 @@ function AuthLayout({ children }: AuthLayoutProps) {
       </div>
 
       <div className="auth-layout-right">
+        <div className="mobile-header">
+          <img src={logoImage2} alt="Logo" className="auth-layout-logo-mobile" />
+        </div>
         {children}
       </div>
     </div>

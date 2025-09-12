@@ -2,7 +2,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Navbar.css';
 
-import logoImage from '../assets/logo.png';
+import logoDesktop from '../assets/logo.png';
+import logoMobile from '../assets/logo-mobile.png';
 
 function Navbar() {
   const { isAuthenticated, user, logout } = useAuth(); 
@@ -17,8 +18,8 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          <img src={logoImage} alt="PseInt Web Studio Logo" className="navbar-logo-img" />
-         
+          <img src={logoDesktop} alt="PseInt Web Studio Logo" className="navbar-logo-desktop" />
+          <img src={logoMobile} alt="PseInt Web Studio Logo" className="navbar-logo-mobile" />         
         </Link>
         <ul className="nav-menu">
           {isAuthenticated ? (
