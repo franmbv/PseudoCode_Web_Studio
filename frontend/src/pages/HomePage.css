@@ -1,4 +1,3 @@
-/* src/pages/HomePage.css */
 .homepage-container {
   width: 100%;
   text-align: center;
@@ -18,33 +17,30 @@
 
 .exercise-grid {
   display: flex;
-  flex-wrap: wrap; /* Permite que las tarjetas pasen a la siguiente línea */
-  gap: 24px; /* Espacio entre las tarjetas */
-  justify-content: center; /* ¡La magia para centrar las tarjetas! */
+  flex-wrap: wrap; 
+  gap: 24px; 
+  justify-content: center; 
   width: 100%;
 }
 
 .progress-trophy {
-  /* Posicionamiento */
-  position: absolute; /* Lo sacamos del flujo normal del documento */
-  top: 100px; /* Un poco por debajo de la Navbar */
-  right: 40px; /* En la esquina superior derecha */
+  position: absolute; 
+  top: 100px; 
+  right: 40px;
 
-  /* Estilos del contenedor */
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  border-radius: 50px; /* Forma de píldora */
+  border-radius: 50px;
   padding: 8px 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   
-  /* Alineación del contenido (icono y texto) */
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .trophy-icon {
-  color: #ffc107; /* Color dorado */
+  color: #ffc107; 
   font-size: 1.5rem;
 }
 

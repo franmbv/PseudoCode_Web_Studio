@@ -1,21 +1,17 @@
-/* src/components/ExerciseCard.css (Versión Mejorada) */
-
 .exercise-card-link {
   text-decoration: none;
   color: inherit;
 }
 
 .exercise-card {
-  background-color: var(--bg-secondary); /* Fondo blanco puro */
+  background-color: var(--bg-secondary); 
   border: 1px solid var(--border-color);
-  border-radius: 16px; /* Esquinas aún más redondeadas */
+  border-radius: 16px; 
   padding: 32px;
   text-align: center;
   
-  /* Sombreado suave para dar profundidad */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 
-  /* Transición suave para todos los efectos */
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   
   cursor: pointer;
@@ -26,23 +22,20 @@
   justify-content: center;
 }
 
-/* Efecto sutil de agrandamiento y sombra más pronunciada al pasar el ratón */
 .exercise-card:hover {
-  transform: scale(1.05); /* Agrandamiento */
+  transform: scale(1.05); 
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para el contenedor del icono */
 .card-icon {
-  font-size: 2.5rem; /* Icono más grande */
-  color: var(--accent-primary); /* Color de acento azul */
-  margin-bottom: 16px; /* Espacio entre el icono y el texto */
+  font-size: 2.5rem; 
+  color: var(--accent-primary); 
+  margin-bottom: 16px; 
 }
 
-/* Texto más grande y centrado (ya estaba centrado, pero ajustamos tamaño) */
 .exercise-card-number {
-  font-size: 1.8rem; /* Texto más grande */
-  font-weight: 600; /* Ligeramente más grueso */
+  font-size: 1.8rem; 
+  font-weight: 600; 
   color: var(--text-primary);
 }
 

@@ -22,12 +22,11 @@ interface DragAndDropProps {
   disabled: boolean;
 }
 
-// --- NUEVO: Función para barajar un array (Algoritmo Fisher-Yates) ---
 const shuffleArray = (array: Option[]): Option[] => {
   const newArray = [...array];
   for (let i = newArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [newArray[i], newArray[j]] = [newArray[j], newArray[i]]; // Intercambio de elementos
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]]; 
   }
   return newArray;
 };
@@ -36,7 +35,6 @@ function DragAndDrop({ options, onAnswerSubmit, disabled }: DragAndDropProps) {
   const [items, setItems] = useState<Option[]>([]);
   const sensors = useSensors(useSensor(PointerSensor));
 
-  // MODIFICADO: Ahora barajamos las opciones al inicializar el componente
   useEffect(() => {
     setItems(shuffleArray(options));
   }, [options]);
@@ -55,7 +53,6 @@ function DragAndDrop({ options, onAnswerSubmit, disabled }: DragAndDropProps) {
   const checkAnswer = () => {
     if (disabled) return;
     const currentOrderIds = items.map(item => item.id);
-    // La lógica de comprobación no cambia: siempre se compara contra el orden de IDs ascendente
     const correctOrderIds = [...options].sort((a, b) => a.id - b.id).map(item => item.id);
     const isCorrect = JSON.stringify(currentOrderIds) === JSON.stringify(correctOrderIds);
     onAnswerSubmit(isCorrect);

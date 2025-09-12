@@ -1,11 +1,10 @@
-// src/App.tsx
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ExerciseDetailPage from './pages/ExerciseDetailPage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import Layout from './components/Layout';
-import ProtectedRoute from './components/ProtectedRoute'; // <-- 1. Importar el guardia
+import ProtectedRoute from './components/ProtectedRoute'; 
 import './App.css';
 
 function App() {

@@ -1,5 +1,4 @@
-import './Footer.css'; // Crearemos este archivo a continuación
-//import { FaGithub, FaTiktok } from 'react-icons/fa'; // Iconos para redes sociales
+import './Footer.css'; 
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,7 +11,7 @@ function Footer() {
         </div>
         <div className="footer-socials">
           {/* <a 
-            href="https://github.com/TU_USUARIO_DE_GITHUB" // <-- ¡IMPORTANTE: Reemplaza con tu usuario!
+            href="https://github.com/MI_USUARIO_DE_GITHUB" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="social-icon-link"
@@ -21,7 +20,7 @@ function Footer() {
             <FaGithub />
           </a>
           <a 
-            href="https://tiktok.com/@TU_USUARIO_DE_TIKTOK" // <-- ¡IMPORTANTE: Reemplaza con tu usuario!
+            href="https://tiktok.com/@MI_USUARIO_DE_TIKTOK" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="social-icon-link"

@@ -1,22 +1,21 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-// NUEVO: Importamos el nuevo tipo de ejercicio
 import FillInTheBlank from '../components/exercise-types/FillInTheBlank';
-import DragAndDrop from '../components/exercise-types/DragAndDrop'; // <-- NUEVO
+import DragAndDrop from '../components/exercise-types/DragAndDrop'; 
 import type { Exercise, Option } from '../types/exercise';
 import { useExercises } from '../context/ExerciseContext';
 import Spinner from '../components/Spinner';
 import { FaArrowLeft } from 'react-icons/fa';
 import './ExerciseDetailPage.css';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
 
-// MODIFICADO: Añadimos el nuevo tipo a la interfaz
+
 interface ExerciseWithDetails extends Exercise {
-  type: 'MULTIPLE_CHOICE' | 'FILL_IN_THE_BLANKS' | 'DRAG_AND_DROP'; // <-- NUEVO
+  type: 'MULTIPLE_CHOICE' | 'FILL_IN_THE_BLANKS' | 'DRAG_AND_DROP'; 
 }
 
 function ExerciseDetailPage() {
-  // ... (todo el código existente hasta la función renderAnswerComponent)
   const { id } = useParams<{ id: string }>();
   const { exercises } = useExercises();
   const { token, updateUserProgress } = useAuth();
@@ -38,7 +37,7 @@ function ExerciseDetailPage() {
       setCheckResult(null);
 
       try {
-        const response = await fetch(`http://localhost:8080/api/exercises/${id}`);
+        const response = await fetch(`${API_BASE_URL}${API_ENDPOINTS.exercises}/${id}`);
         if (!response.ok) throw new Error(`El ejercicio no fue encontrado.`);
         const data: ExerciseWithDetails = await response.json();
         setExercise(data);
@@ -59,7 +58,7 @@ function ExerciseDetailPage() {
     setCheckResult(isCorrect ? 'correct' : 'incorrect');
     if (isCorrect) {
       try {
-        const progressResponse = await fetch(`http://localhost:8080/api/progress/complete/${id}`, {
+        const progressResponse = await fetch(`${API_BASE_URL}${API_ENDPOINTS.completeProgress}/${id}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -79,7 +78,7 @@ function ExerciseDetailPage() {
   const handleCheckMultipleChoice = async () => {
     if (selectedOptionId === null) return;
     try {
-      const response = await fetch('http://localhost:8080/api/exercises/submit-answer', {
+      const response = await fetch(`${API_BASE_URL}${API_ENDPOINTS.submitAnswer}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ optionId: selectedOptionId }),
@@ -106,7 +105,6 @@ function ExerciseDetailPage() {
   if (error) return <div className="error-message">{error}</div>;
   if (!exercise) return <Spinner />;
 
-  // --- MODIFICADO: FUNCIÓN PARA RENDERIZAR EL TIPO DE RESPUESTA ---
   const renderAnswerComponent = () => {
     switch (exercise.type) {
       case 'FILL_IN_THE_BLANKS':
@@ -117,7 +115,6 @@ function ExerciseDetailPage() {
             disabled={!!checkResult}
           />
         );
-      // --- NUEVO CASO ---
       case 'DRAG_AND_DROP':
         return (
           <DragAndDrop

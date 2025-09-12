@@ -1,4 +1,4 @@
-import './Spinner.css'; // Importamos los estilos que crearemos a continuación
+import './Spinner.css';
 
 function Spinner() {
   return (

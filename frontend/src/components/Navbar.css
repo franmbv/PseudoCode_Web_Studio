@@ -1,6 +1,5 @@
-/* src/components/Navbar.css (Versión con Paleta de Colores) */
 .navbar {
-  background: var(--bg-secondary); /* Usamos el blanco puro para contraste */
+  background: var(--bg-secondary); 
   height: 80px;
   display: flex;
   justify-content: center;
@@ -9,8 +8,8 @@
   position: sticky;
   top: 0;
   z-index: 999;
-  border-bottom: 1px solid var(--border-color); /* Borde sutil */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04); /* Sombra muy ligera */
+  border-bottom: 1px solid var(--border-color); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04); 
 }
 
 .navbar-container {

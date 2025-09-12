@@ -1,12 +1,12 @@
-// src/pages/LoginPage.tsx (Refactorizado)
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import AuthLayout from '../components/AuthLayout'; // <-- 1. Importar el Layout
+import AuthLayout from '../components/AuthLayout';
 import './AuthPage.css';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
+
 
 function LoginPage() {
-  // ... (toda la lógica de useState, handleSubmit, etc., se queda EXACTAMENTE IGUAL) ...
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -17,7 +17,7 @@ function LoginPage() {
     e.preventDefault();
     setError(null);
     try {
-      const response = await fetch('http://localhost:8080/api/auth/login', {
+      const response = await fetch(`${API_BASE_URL}${API_ENDPOINTS.login}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -33,7 +33,6 @@ function LoginPage() {
   };
 
   return (
-    // 2. Usamos el AuthLayout y le pasamos el formulario como 'children'
     <AuthLayout>
       <form onSubmit={handleSubmit} className="auth-form">
         <h2>Iniciar Sesión</h2>

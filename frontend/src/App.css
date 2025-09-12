@@ -49,25 +49,25 @@
 }
 
 .statement {
-  color: var(--text-secondary); /* Usamos el color de texto secundario para el enunciado */
+  color: var(--text-secondary); 
 }
 
 .code-snippet {
-  background-color: #e9ecef; /* Un fondo ligeramente diferente para el código */
+  background-color: #e9ecef; 
   padding: 1rem;
   border-radius: 8px;
   text-align: left;
   color: var(--text-primary);
   border: 1px solid var(--border-color);
-  white-space: pre-wrap; /* Para que el texto se ajuste si es muy largo */
+  white-space: pre-wrap; 
 }
 
 .site-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ocupa al menos toda la altura de la ventana */
+  min-height: 100vh; 
 }
 
 .main-content {
-  flex-grow: 1; /* ¡La magia! Hace que el contenido principal ocupe todo el espacio sobrante */
+  flex-grow: 1; 
 }

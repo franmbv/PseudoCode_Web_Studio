@@ -1,6 +1,6 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import './DragAndDrop.css'; // Reutilizaremos los mismos estilos
+import './DragAndDrop.css'; 
 
 interface SortableItemProps {
   id: number;

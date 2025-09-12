@@ -6,8 +6,8 @@
 }
 
 .spinner {
-  border: 8px solid rgba(255, 255, 255, 0.2); /* Gris claro semi-transparente */
-  border-top: 8px solid #61dafb; /* Color azul de React */
+  border: 8px solid rgba(255, 255, 255, 0.2); 
+  border-top: 8px solid #61dafb; 
   border-radius: 50%;
   width: 60px;
   height: 60px;

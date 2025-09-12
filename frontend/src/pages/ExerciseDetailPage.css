@@ -1,17 +1,15 @@
-/* src/pages/ExerciseDetailPage.css */
 
 .detail-page-container {
   width: 100%;
-  max-width: 800px; /* Un ancho máximo para que la pregunta sea fácil de leer */
+  max-width: 800px; 
   margin: 0 auto;
-  text-align: left; /* Alineamos el texto a la izquierda para mejor legibilidad */
+  text-align: left; 
 }
 
-/* 1. Botón "Volver a la lista" discreto */
 .back-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px; /* Espacio entre el icono y el texto */
+  gap: 8px; 
   color: var(--text-secondary);
   text-decoration: none;
   margin-bottom: 24px;
@@ -22,7 +20,6 @@
   color: var(--accent-primary);
 }
 
-/* 2. Título principal grande y limpio */
 .exercise-title {
   font-size: 2.8rem;
   font-weight: 700;
@@ -30,29 +27,26 @@
   margin-bottom: 8px;
 }
 
-/* 3. Pregunta legible */
 .exercise-statement {
   font-size: 1.2rem;
   color: var(--text-secondary);
   margin-bottom: 32px;
 }
 
-/* 4. Área de Código/Input pulida */
 .code-snippet {
   background-color: #e9ecef;
   padding: 1.5rem;
-  border-radius: 12px; /* Bordes más suaves */
+  border-radius: 12px; 
   text-align: left;
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   white-space: pre-wrap;
-  font-family: 'Courier New', Courier, monospace; /* Fuente monoespaciada */
+  font-family: 'Courier New', Courier, monospace; 
   font-size: 1.1rem;
   margin-bottom: 32px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombreado ligero */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
 }
 
-/* 5. Opciones como tarjetas delgadas */
 .options-title {
   font-size: 1.5rem;
   font-weight: 600;
@@ -67,19 +61,18 @@
   gap: 12px;
 }
 
-/* Los estilos de los botones de opción se movieron aquí desde App.css */
-/* Y se adaptaron para que parezcan tarjetas */
+
 .option-button {
   display: block;
   width: 100%;
-  padding: 16px; /* Más padding */
+  padding: 16px; 
   font-size: 1rem;
   text-align: left;
   cursor: pointer;
   border: 1px solid var(--border-color);
   background-color: var(--bg-secondary);
   color: var(--text-primary);
-  border-radius: 12px; /* Mismos bordes que el snippet de código */
+  border-radius: 12px; 
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
@@ -109,13 +102,12 @@
 
 .option-button.selected {
   border-color: var(--accent-primary);
-  background-color: #e7f3ff; /* Un azul muy claro */
+  background-color: #e7f3ff; 
 }
 
-/* Contenedor para los botones de acción (Comprobar/Siguiente) */
 .action-container {
   margin-top: 32px;
-  text-align: right; /* Alinea el botón a la derecha */
+  text-align: right; 
   border-top: 1px solid var(--border-color);
   padding-top: 24px;
 }

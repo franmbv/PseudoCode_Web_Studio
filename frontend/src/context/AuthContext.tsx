@@ -1,9 +1,8 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import type { ReactNode } from 'react';
 import type { User } from '../types/user';
-import { useExercises } from './ExerciseContext'; // <-- 1. Importar el hook de ejercicios
+import { useExercises } from './ExerciseContext'; 
 
-// ... (interfaces AuthState, AuthContextType)
 interface AuthState {
   isAuthenticated: boolean;
   user: User | null;
@@ -21,7 +20,6 @@ interface AuthContextType extends AuthState {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  // ... (código de useState, useEffect, login, logout)
   const [authState, setAuthState] = useState<AuthState>({
     isAuthenticated: false,
     user: null,
@@ -29,10 +27,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     isLoading: true,
   });
   
-  // <-- 2. Obtener los ejercicios del contexto de ejercicios
   const { exercises } = useExercises();
 
-  // ... (useEffect, login, logout sin cambios)
   useEffect(() => {
     try {
       const token = localStorage.getItem('token');
@@ -81,7 +77,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const updateUserProgress = (completedExerciseId: number) => {
-    // 2. ¡EL CAMBIO CLAVE! El nuevo progreso ES el ID del ejercicio completado.
     const newProgress = completedExerciseId;
 
     setAuthState(prevState => {
@@ -91,7 +86,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         
         const currentProgress = prevState.user.progress ?? 0;
         
-        // La lógica de "cappedProgress" que añadiste es una excelente mejora de robustez, la conservamos.
         const maxProgress = exercises.length;
         const cappedProgress = Math.min(newProgress, maxProgress);
 

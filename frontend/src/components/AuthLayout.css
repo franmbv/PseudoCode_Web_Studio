@@ -1,13 +1,12 @@
-/* src/components/AuthLayout.css */
 .auth-layout-container {
   display: flex;
-  width: 100vw; /* Ocupa todo el ancho de la ventana */
-  min-height: 100vh; /* Ocupa toda la altura de la ventana */
+  width: 100vw; 
+  min-height: 100vh; 
 }
 
 .auth-layout-left {
-  flex: 1; /* Ocupa el 50% del espacio disponible */
-  background: linear-gradient(to right, #007bff, #0056b3); /* Un gradiente azul atractivo */
+  flex: 1; 
+  background: linear-gradient(to right, #007bff, #0056b3); 
   color: white;
   display: flex;
   flex-direction: column;
@@ -18,7 +17,7 @@
 }
 
 .auth-layout-logo {
-  height: 120px; /* Logo más grande */
+  height: 120px; 
   margin-bottom: 24px;
 }
 
@@ -34,10 +33,10 @@
 }
 
 .auth-layout-right {
-  flex: 1; /* Ocupa el otro 50% del espacio */
+  flex: 1; 
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--bg-primary); /* El fondo gris claro que ya tenemos */
+  background-color: var(--bg-primary);
 }
 

@@ -46,19 +46,14 @@ function HomePage() {
         {currentExercises.map((exercise, index) => {
           const globalIndex = indexOfFirstExercise + index;
 
-          // --- LÓGICA DE BLOQUEO SIMPLIFICADA Y CORREGIDA ---
           let isLocked: boolean;
 
           if (isAuthenticated) {
-            // Si el usuario está autenticado, el bloqueo depende de su progreso.
-            // Un ejercicio está bloqueado si su índice es mayor que el número de ejercicios completados.
             isLocked = globalIndex > userProgress;
           } else {
-            // Si no está autenticado, solo el primer ejercicio (índice 0) está desbloqueado.
             isLocked = globalIndex > 0;
           }
 
-          // Ahora usamos la variable 'isLocked' en una sola condición.
           if (isLocked) {
             return (
               <div key={exercise.id} className="exercise-card locked">
@@ -68,7 +63,6 @@ function HomePage() {
             );
           }
 
-          // Si no está bloqueado, se muestra la tarjeta normal.
           return <ExerciseCard key={exercise.id} exercise={exercise} index={globalIndex} />;
         })}
       </div>

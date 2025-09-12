@@ -1,9 +1,9 @@
 .footer {
-  background-color: var(--bg-secondary); /* Fondo blanco, igual que la Navbar */
+  background-color: var(--bg-secondary); 
   padding: 2rem 0;
   margin-top: 4rem;
-  border-top: 1px solid var(--border-color); /* Borde superior sutil */
-  color: var(--text-secondary); /* Texto secundario gris */
+  border-top: 1px solid var(--border-color); 
+  color: var(--text-secondary); 
 }
 
 .footer-container {
@@ -11,10 +11,10 @@
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
-  justify-content: space-between; /* Pone el copyright a la izq. y las redes a la der. */
+  justify-content: space-between; 
   align-items: center;
-  flex-wrap: wrap; /* Permite que se apilen en pantallas pequeñas */
-  gap: 20px; /* Espacio entre elementos si se apilan */
+  flex-wrap: wrap; 
+  gap: 20px; 
 }
 
 .footer-copyright {
@@ -23,15 +23,15 @@
 
 .footer-socials {
   display: flex;
-  gap: 20px; /* Espacio entre los iconos */
+  gap: 20px; 
 }
 
 .social-icon-link {
   color: var(--text-secondary);
-  font-size: 1.5rem; /* Tamaño de los iconos */
+  font-size: 1.5rem; 
   transition: color 0.2s ease-in-out;
 }
 
 .social-icon-link:hover {
-  color: var(--accent-primary); /* Cambia a color de acento al pasar el ratón */
+  color: var(--accent-primary); 
 }

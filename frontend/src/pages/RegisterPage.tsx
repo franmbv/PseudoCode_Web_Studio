@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthLayout from '../components/AuthLayout'; 
 import './AuthPage.css';
+import { API_BASE_URL, API_ENDPOINTS } from '../config/api';
+
 
 function RegisterPage() {
   const [username, setUsername] = useState('');
@@ -11,12 +13,13 @@ function RegisterPage() {
   const [success, setSuccess] = useState<string | null>(null);
   const navigate = useNavigate();
 
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
     setSuccess(null);
     try {
-      const response = await fetch('http://localhost:8080/api/auth/register', {
+      const response = await fetch(`${API_BASE_URL}${API_ENDPOINTS.register}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password }),
@@ -34,7 +37,6 @@ function RegisterPage() {
   };
   
   return (
-    // 2. Usamos el AuthLayout
     <AuthLayout>
       <form onSubmit={handleSubmit} className="auth-form">
         <h2>Crear una Cuenta</h2>

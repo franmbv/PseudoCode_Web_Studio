@@ -31,12 +31,11 @@ function FillInTheBlank({ options, onAnswerSubmit, disabled }: FillInTheBlankPro
         onChange={handleInputChange}
         placeholder="Escribe tu respuesta aquí"
         disabled={disabled}
-        // Permite enviar con la tecla Enter
         onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); checkAnswer(); } }}
       />
       {!disabled && (
          <button 
-            type="button" // <-- Tipo 'button' para evitar envíos de formulario
+            type="button" 
             onClick={checkAnswer} 
             className="check-button"
             disabled={userAnswer.trim() === ''}
