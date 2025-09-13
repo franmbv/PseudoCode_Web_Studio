@@ -110,7 +110,7 @@ Para ejecutar este proyecto en tu máquina local, necesitarás tener instalado J
 
 ---
 
-## 📸 Screenshots (Opcional pero MUY Recomendado)
+## 📸 Screenshots 
 
 **Página de Inicio de Sesión:**
 <img width="1356" height="640" alt="image" src="https://github.com/user-attachments/assets/7179ca8b-1025-471a-b744-c7ec6d2df2e7" />
