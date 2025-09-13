@@ -4,7 +4,7 @@
 
 **Pseudocodex** es una aplicación web full-stack diseñada para ayudar a estudiantes y entusiastas de la programación a aprender y practicar los fundamentos de la lógica de algoritmos, inspirada en la popular herramienta PseInt. La plataforma ofrece ejercicios interactivos, un sistema de progresión y una interfaz limpia y moderna.
 
-**Visita la aplicación en vivo:** **[https://pseudocodex.netlify.app/]**(https://pseudocodex.netlify.app/)
+**Visita la aplicación en vivo:** https://pseudocodex.netlify.app/
 
 ---
 
@@ -63,7 +63,7 @@ Para ejecutar este proyecto en tu máquina local, necesitarás tener instalado J
 
 1.  **Clona el repositorio:**
     ```bash
-    git clone [https://github.com/tu-usuario/tu-repositorio.git](https://github.com/franmbv/PseudoCode_Web_Studio.git)
+    git clone https://github.com/franmbv/PseudoCode_Web_Studio.git
     cd PseudoCode_Web_Studio/backend
     ```
 
