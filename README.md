@@ -137,6 +137,6 @@ Este proyecto fue una oportunidad para profundizar en:
 
 ## 👨‍💻 Autor
 
-**[Franner Bermudez]**
+**Franner Bermudez**
 *   **GitHub:** [@franmbv](https://github.com/franmbv)
 *   **LinkedIn:** [Franner Bermudez](www.linkedin.com/in/franner-bermudez-99b4a91a2)
