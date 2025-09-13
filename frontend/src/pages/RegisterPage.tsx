@@ -18,11 +18,12 @@ function RegisterPage() {
     e.preventDefault();
     setError(null);
     setSuccess(null);
+    const usernameToSubmit = username.toLowerCase();
     try {
       const response = await fetch(`${API_BASE_URL}${API_ENDPOINTS.register}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ username: usernameToSubmit, email, password }),
       });
       if (!response.ok) {
         const errorText = await response.text();

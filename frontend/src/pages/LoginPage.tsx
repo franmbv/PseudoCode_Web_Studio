@@ -16,11 +16,12 @@ function LoginPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
+    const usernameToSubmit = username.toLowerCase();
     try {
       const response = await fetch(`${API_BASE_URL}${API_ENDPOINTS.login}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username: usernameToSubmit, password }),
       });
       if (!response.ok) throw new Error('Usuario o contraseña incorrectos.');
       const data = await response.json();
