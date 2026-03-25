@@ -1,4 +1,4 @@
-package com.pseudocodewebstudio.backend.model;
+package com.pseudocodewebstudio.backend.persistence.entity;
 
 public enum ExerciseType {
     MULTIPLE_CHOICE,

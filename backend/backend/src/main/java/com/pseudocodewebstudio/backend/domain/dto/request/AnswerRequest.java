@@ -1,4 +1,4 @@
-package com.pseudocodewebstudio.backend.dto;
+package com.pseudocodewebstudio.backend.domain.dto.request;
 
 public class AnswerRequest {
     private Long optionId;

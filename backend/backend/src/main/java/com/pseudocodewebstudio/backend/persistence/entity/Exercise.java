@@ -1,8 +1,9 @@
-package com.pseudocodewebstudio.backend.model;
+package com.pseudocodewebstudio.backend.persistence.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity

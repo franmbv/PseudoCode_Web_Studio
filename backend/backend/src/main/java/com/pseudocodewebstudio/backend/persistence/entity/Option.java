@@ -1,4 +1,4 @@
-package com.pseudocodewebstudio.backend.model;
+package com.pseudocodewebstudio.backend.persistence.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -40,7 +40,7 @@ public class Option {
         this.text = text;
     }
 
-    public boolean isCorrect() {
+    public boolean isIsCorrect() {
         return isCorrect;
     }
 

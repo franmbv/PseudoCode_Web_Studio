@@ -1,7 +1,7 @@
 package com.pseudocodewebstudio.backend.security.services;
 
-import com.pseudocodewebstudio.backend.model.User;
-import com.pseudocodewebstudio.backend.repository.UserRepository;
+import com.pseudocodewebstudio.backend.persistence.crud.CrudUserEntity;
+import com.pseudocodewebstudio.backend.persistence.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,12 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
-    UserRepository userRepository;
+    CrudUserEntity userEntityRepository;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username)
+        User user = userEntityRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
 
         return UserDetailsImpl.build(user);

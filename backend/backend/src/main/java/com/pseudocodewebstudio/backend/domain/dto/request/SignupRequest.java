@@ -1,12 +1,19 @@
-package com.pseudocodewebstudio.backend.dto;
+package com.pseudocodewebstudio.backend.domain.dto.request;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 
-public class LoginRequest {
+public class SignupRequest {
     @NotBlank
+    @Size(min = 3, max = 20)
     private String username;
 
     @NotBlank
+    @Size(max = 50)
+    @Email
+    private String email;
+
+    @NotBlank
+    @Size(min = 6, max = 40)
     private String password;
 
     public String getUsername() {
@@ -17,6 +24,14 @@ public class LoginRequest {
         this.username = username;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -25,3 +40,4 @@ public class LoginRequest {
         this.password = password;
     }
 }
+

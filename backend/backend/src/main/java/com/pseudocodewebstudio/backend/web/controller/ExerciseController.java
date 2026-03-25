@@ -1,8 +1,9 @@
-package com.pseudocodewebstudio.backend.controller;
+package com.pseudocodewebstudio.backend.web.controller;
 
-import com.pseudocodewebstudio.backend.dto.AnswerRequest;
-import com.pseudocodewebstudio.backend.model.Exercise;
-import com.pseudocodewebstudio.backend.service.ExerciseService;
+import com.pseudocodewebstudio.backend.domain.dto.request.AnswerRequest;
+import com.pseudocodewebstudio.backend.domain.dto.response.ExerciseAdminResponseDto;
+import com.pseudocodewebstudio.backend.persistence.entity.Exercise;
+import com.pseudocodewebstudio.backend.domain.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +20,12 @@ public class ExerciseController {
     }
 
     @GetMapping
-    public List<Exercise> getAllExercises(){
+    public List<ExerciseAdminResponseDto> getAllExercises(){
         return exerciseService.findAllExercises();
     }
 
     @GetMapping("/{id}")
-    public Exercise getExerciseById(@PathVariable Long id) {
+    public ExerciseAdminResponseDto getExerciseById(@PathVariable Long id) {
         return exerciseService.findExerciseById(id);
     }
 

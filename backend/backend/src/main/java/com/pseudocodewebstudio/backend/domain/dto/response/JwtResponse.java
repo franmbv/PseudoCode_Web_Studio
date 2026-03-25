@@ -1,6 +1,4 @@
-package com.pseudocodewebstudio.backend.dto;
-
-import ch.qos.logback.core.model.INamedModel;
+package com.pseudocodewebstudio.backend.domain.dto.response;
 
 public class JwtResponse {
     private String token;

@@ -1,7 +1,7 @@
 package com.pseudocodewebstudio.backend.security.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.pseudocodewebstudio.backend.model.User;
+import com.pseudocodewebstudio.backend.persistence.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

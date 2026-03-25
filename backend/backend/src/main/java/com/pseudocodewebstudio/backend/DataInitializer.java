@@ -1,23 +1,23 @@
 package com.pseudocodewebstudio.backend; // Asegúrate de que el paquete sea el correcto
 
-import com.pseudocodewebstudio.backend.model.Exercise;
-import com.pseudocodewebstudio.backend.model.ExerciseType;
-import com.pseudocodewebstudio.backend.model.Option;
-import com.pseudocodewebstudio.backend.repository.ExerciseRepository;
+import com.pseudocodewebstudio.backend.persistence.crud.CrudExerciseEntity;
+import com.pseudocodewebstudio.backend.persistence.entity.Exercise;
+import com.pseudocodewebstudio.backend.persistence.entity.ExerciseType;
+import com.pseudocodewebstudio.backend.persistence.entity.Option;
+import com.pseudocodewebstudio.backend.persistence.repository_impl.ExerciseEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 //@Component
 public class DataInitializer implements CommandLineRunner {
 
-    private final ExerciseRepository exerciseRepository;
+    private final CrudExerciseEntity exerciseEntityRepository;
 
     @Autowired
-    public DataInitializer(ExerciseRepository exerciseRepository) {
-        this.exerciseRepository = exerciseRepository;
+    public DataInitializer(CrudExerciseEntity exerciseEntityRepository) {
+        this.exerciseEntityRepository = exerciseEntityRepository;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class DataInitializer implements CommandLineRunner {
         option1_3.setExercise(exercise1);
 
         exercise1.setOptions(List.of(option1_1, option1_2, option1_3));
-        exerciseRepository.save(exercise1);
+        exerciseEntityRepository.save(exercise1);
 
         // Crear Ejercicio 2: Verdadero o Falso
         Exercise exercise2 = new Exercise();
@@ -66,8 +66,8 @@ public class DataInitializer implements CommandLineRunner {
         option2_2.setExercise(exercise2);
 
         exercise2.setOptions(List.of(option2_1, option2_2));
-        exerciseRepository.save(exercise2);
+        exerciseEntityRepository.save(exercise2);
 
-        System.out.println("Datos de prueba cargados. Total de ejercicios: " + exerciseRepository.count());
+        System.out.println("Datos de prueba cargados. Total de ejercicios: " + exerciseEntityRepository.count());
     }
 }
