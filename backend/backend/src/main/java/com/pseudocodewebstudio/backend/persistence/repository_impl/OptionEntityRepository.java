@@ -3,6 +3,7 @@ package com.pseudocodewebstudio.backend.persistence.repository_impl;
 import com.pseudocodewebstudio.backend.domain.dto.request.OptionSaveRequestDto;
 import com.pseudocodewebstudio.backend.domain.dto.response.OptionAdminResponseDto;
 import com.pseudocodewebstudio.backend.domain.dto.response.OptionStudentResponseDto;
+import com.pseudocodewebstudio.backend.domain.exception.ResourceNotFoundException;
 import com.pseudocodewebstudio.backend.domain.repository.OptionRepository;
 import com.pseudocodewebstudio.backend.persistence.crud.CrudOptionEntity;
 import com.pseudocodewebstudio.backend.persistence.entity.Option;
@@ -24,6 +25,9 @@ public class OptionEntityRepository implements OptionRepository {
     @Override
     public OptionAdminResponseDto findOptionByIdForAdmin(Long optionId) {
         Option optionEntity = this.crudOptionEntity.findById(optionId).orElse(null);
+        if(optionEntity == null) {
+            throw new ResourceNotFoundException("Exercise with id " + optionId + " does not exist.");
+        }
         return this.optionMapper.toAdminResponseDto(optionEntity);
     }
 
@@ -36,6 +40,9 @@ public class OptionEntityRepository implements OptionRepository {
     @Override
     public OptionStudentResponseDto findOptionByIdForStudent(Long optionId) {
         Option optionEntity = this.crudOptionEntity.findById(optionId).orElse(null);
+        if(optionEntity == null) {
+            throw new ResourceNotFoundException("Exercise with id " + optionId + " does not exist.");
+        }
         return this.optionMapper.toStudentResponseDto(optionEntity);
     }
 
@@ -48,7 +55,9 @@ public class OptionEntityRepository implements OptionRepository {
     @Override
     public OptionAdminResponseDto updateOption(Long optionId, OptionSaveRequestDto optionSaveRequestDto) {
         Option optionEntity = this.crudOptionEntity.findById(optionId).orElse(null);
-        if(optionEntity == null) return null;
+        if(optionEntity == null) {
+            throw new ResourceNotFoundException("Exercise with id " + optionId + " does not exist.");
+        }
 
         this.optionMapper.updateEntityFromDto(optionSaveRequestDto,optionEntity);
 
@@ -58,7 +67,7 @@ public class OptionEntityRepository implements OptionRepository {
     @Override
     public void deleteOption(Long optionId) {
         if(!this.crudOptionEntity.existsById(optionId)){
-            throw new RuntimeException("Exercise with id " + optionId + " does not exist.");
+            throw new ResourceNotFoundException("Exercise with id " + optionId + " does not exist.");
         }
 
         this.crudOptionEntity.deleteById(optionId);
